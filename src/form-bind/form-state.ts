@@ -40,8 +40,8 @@ export class FormState<S extends States> {
     Object.keys(this.fields).forEach(key => {
       this.fields[key].dispose()
     })
-    // this.disposers.forEach(disposer => disposer())
-    // this.disposers = []
+    this.disposers.forEach(disposer => disposer())
+    this.disposers = []
   }
 
   constructor(states: S) {
