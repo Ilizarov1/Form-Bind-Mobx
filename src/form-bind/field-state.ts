@@ -27,16 +27,17 @@ export class FieldState<T> {
   }
 
   doValidation() {
-    this.validators.forEach(validator => {
+    for (const validator of this.validators) {
       const result = validator(this.value);
       if (typeof result === 'string') {
         this.error = result;
         this.hasError = true;
-      } else {
-        this.error = '';
-        this.hasError = false;
+        return;
       }
-    })
+    }
+
+    this.error = '';
+    this.hasError = false;
   }
 
   onChange(val: T | null) {

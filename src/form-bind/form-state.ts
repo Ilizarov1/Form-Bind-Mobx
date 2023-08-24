@@ -24,11 +24,12 @@ export class FormState<S extends States> {
   }
 
   validate() {
-    Object.keys(this.fields).forEach(key => {
+    for (const key of Object.keys(this.fields)) {
       this.fields[key].doValidation();
-      this.hasError ||= this.fields[key].hasError
+      this.hasError ||= this.fields[key].hasError;
       if (this.hasError) return;
-    })
+    }
+  
     this.hasError = false;
   }
   
